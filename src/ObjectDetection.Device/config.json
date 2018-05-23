@@ -1,0 +1,4 @@
+{
+    "connectionString": "",
+    "apiUrl": "https://.azurewebsites.net/api/blobs"
+}
