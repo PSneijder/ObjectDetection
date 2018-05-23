@@ -49,14 +49,19 @@ namespace ObjectDetection.WebApp
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "ObjectDetection V1");
-                options.RoutePrefix = string.Empty;
+                options.RoutePrefix = "api";
                 options.EnableFilter();
             });
 
             app.UseStaticFiles();
             app.UseStaticFilesIn(env, Constants.UploadPath);
 
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
             app.UseSignalR(builder => builder.MapHub<DeviceHub>("/deviceHub"));
         }
     }

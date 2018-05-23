@@ -5,7 +5,7 @@ using ObjectDetection.WebApp.Extensions;
 using ObjectDetection.WebApp.Managers;
 using ObjectDetection.WebApp.Models;
 
-namespace ObjectDetection.WebApp.Controllers
+namespace ObjectDetection.WebApp.Controllers.Api
 {
     [Route("api/[controller]")]
     public sealed class DevicesController

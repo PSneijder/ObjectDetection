@@ -6,7 +6,7 @@ using ObjectDetection.WebApp.Filters;
 using ObjectDetection.WebApp.Managers;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace ObjectDetection.WebApp.Controllers
+namespace ObjectDetection.WebApp.Controllers.Api
 {
     [Route("api/[controller]")]
     public sealed class BlobsController
