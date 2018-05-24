@@ -15,8 +15,8 @@ namespace ObjectDetection.WebApp.Managers
 
         public DeviceManager(IConfiguration config)
         {
-            _serviceClient = ServiceClient.CreateFromConnectionString(config["ServiceConnectionString"]);
-            _registryManager = RegistryManager.CreateFromConnectionString(config["RegistryConnectionString"]);
+            _serviceClient = ServiceClient.CreateFromConnectionString(config["Server:ServiceConnectionString"]);
+            _registryManager = RegistryManager.CreateFromConnectionString(config["Server:RegistryConnectionString"]);
         }
         
         public async Task SendDeviceCommand(string deviceId, string methodName)

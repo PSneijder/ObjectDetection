@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ObjectDetection.WebApp.Filters;
 using ObjectDetection.WebApp.Managers;
+using ObjectDetection.WebApp.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace ObjectDetection.WebApp.Controllers.Api
@@ -49,9 +50,9 @@ namespace ObjectDetection.WebApp.Controllers.Api
         {
             try
             {
-                string[] urls = await _manager.ListBlobs();
+                Blob[] blob = await _manager.ListBlobs();
 
-                return Ok(urls);
+                return Ok(blob);
             }
             catch (Exception e)
             {

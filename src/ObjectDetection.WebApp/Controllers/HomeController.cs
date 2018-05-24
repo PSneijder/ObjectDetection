@@ -17,7 +17,7 @@ namespace ObjectDetection.WebApp.Controllers
         public async Task<IActionResult> Index()
         {
             var blobs = await _manager.ListBlobs();
-            var viewModel = new HomeViewModel()
+            var viewModel = new HomeViewModel
             {
                 Blobs = blobs
             };

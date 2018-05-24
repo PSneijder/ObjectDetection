@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using ObjectDetection.WebApp.Extensions;
+using ObjectDetection.WebApp.Models;
 
 namespace ObjectDetection.WebApp.Managers
 {
@@ -18,7 +19,7 @@ namespace ObjectDetection.WebApp.Managers
         public BlobManager(IHostingEnvironment env, IConfiguration config)
         {
             _env = env;
-            _baseUri = config["BaseUri"];
+            _baseUri = config["Server:BaseUri"];
         }
 
         public Task<string[]> Upload(Stream stream)
@@ -59,26 +60,26 @@ namespace ObjectDetection.WebApp.Managers
             return Task.FromResult(urls.ToArray());
         }
 
-        public Task<string[]> ListBlobs()
+        public Task<Blob[]> ListBlobs()
         {
-            var urls = new List<string>();
+            var blobs = new List<Blob>();
 
             string path = GetRootPath();
 
             foreach (string file in Directory.EnumerateFiles(path, "*.*").AsParallel())
             {
-                string fileName = Path.GetFileName(file);
-
+                FileInfo info = new FileInfo(file);
+                
                 UriBuilder builder =
-                    new UriBuilder(new Uri(_baseUri))
-                    {
-                        Path = $"{Constants.UploadPath}/{fileName}"
-                    };
+                new UriBuilder(new Uri(_baseUri))
+                {
+                    Path = $"{Constants.UploadPath}/{info.Name}"
+                };
 
-                urls.Add(builder.ToString());
+                blobs.Add(new Blob { DateTime = info.CreationTime, Url = builder.ToString() });
             }
 
-            return Task.FromResult(urls.ToArray());
+            return Task.FromResult(blobs.ToArray());
         }
 
         private string GetUniqueFileName(string fileName)
