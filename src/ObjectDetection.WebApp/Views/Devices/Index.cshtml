@@ -1,0 +1,40 @@
+﻿@model ObjectDetection.WebApp.ViewModels.DeviceViewModel
+
+@{
+    ViewData["Title"] = "Blobs";
+}
+
+<div class="row" id="albums">
+    @if (Model.Devices.Length == 0)
+    {
+        <p>No blobs available.</p>
+    }
+    else
+    {
+        foreach (var device in Model.Devices)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="@device.Image">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">@device.Id</span>
+                        <p>ConnectionState: @device.ConnectionState</p>
+                        <p>LastActivityTime: @device.LastActivityTime</p>
+                    </div>
+                    <div class="card-action">
+                        @using (Html.BeginForm("CreateSnapshot", "Devices", FormMethod.Post, new { id = "snapShot" }))
+                        {
+                            <input id="deviceId" name="deviceId" value="@device.Id" type="hidden"/>
+                            <a class="btn" href="javascript:document.getElementById('snapShot').submit()">
+                                <span>Take a snapshot</span>
+                            </a>
+                        }
+                        <p><a class="btn disabled">Take a video</a></p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

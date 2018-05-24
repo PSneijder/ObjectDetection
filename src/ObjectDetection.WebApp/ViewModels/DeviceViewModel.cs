@@ -2,8 +2,8 @@
 
 namespace ObjectDetection.WebApp.ViewModels
 {
-    public sealed class HomeViewModel
+    public sealed class DeviceViewModel
     {
-        public Blob[] Blobs { get; set; }
+        public Device[] Devices { get; set; }
     }
 }

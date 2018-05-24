@@ -47,7 +47,8 @@ namespace ObjectDetection.WebApp.Managers
                     {
                         Id = twin.DeviceId,
                         ConnectionState = twin.ConnectionState?.ToString(),
-                        LastActivityTime = twin.LastActivityTime
+                        LastActivityTime = twin.LastActivityTime,
+                        Image = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy9SyxUrGMkbV9uQln-a1rs4Z30ehYDhj-3PWadGGkXNjCmLyu"
                     });
                 }
             }

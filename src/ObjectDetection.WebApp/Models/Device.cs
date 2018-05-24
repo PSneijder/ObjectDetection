@@ -7,5 +7,6 @@ namespace ObjectDetection.WebApp.Models
         public string Id { get; set; }
         public string ConnectionState { get; set; }
         public DateTime? LastActivityTime { get; set; }
+        public string Image { get; set; }
     }
 }

@@ -69,12 +69,12 @@ namespace ObjectDetection.WebApp.Managers
             foreach (string file in Directory.EnumerateFiles(path, "*.*").AsParallel())
             {
                 FileInfo info = new FileInfo(file);
-                
+
                 UriBuilder builder =
-                new UriBuilder(new Uri(_baseUri))
-                {
-                    Path = $"{Constants.UploadPath}/{info.Name}"
-                };
+                    new UriBuilder(new Uri(_baseUri))
+                    {
+                        Path = $"{Constants.UploadPath}/{info.Name}"
+                    };
 
                 blobs.Add(new Blob { DateTime = info.CreationTime, Url = builder.ToString() });
             }

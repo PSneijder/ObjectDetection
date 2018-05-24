@@ -66,7 +66,7 @@ namespace ObjectDetection.WebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Blobs}/{action=Index}/{id?}");
             });
             app.UseSignalR(builder => builder.MapHub<DeviceHub>("/deviceHub"));
         }

@@ -5,11 +5,11 @@ using ObjectDetection.WebApp.ViewModels;
 
 namespace ObjectDetection.WebApp.Controllers
 {
-    public sealed class HomeController : ControllerBase
+    public sealed class BlobsController : ControllerBase
     {
         private readonly BlobManager _manager;
 
-        public HomeController(BlobManager manager)
+        public BlobsController(BlobManager manager)
         {
             _manager = manager;
         }
@@ -17,7 +17,7 @@ namespace ObjectDetection.WebApp.Controllers
         public async Task<IActionResult> Index()
         {
             var blobs = await _manager.ListBlobs();
-            var viewModel = new HomeViewModel
+            var viewModel = new BlobViewModel
             {
                 Blobs = blobs
             };
