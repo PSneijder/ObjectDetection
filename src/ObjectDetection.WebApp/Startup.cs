@@ -44,11 +44,12 @@ namespace ObjectDetection.WebApp
         {
             loggerFactory.AddDebug();
             loggerFactory.AddAzureWebAppDiagnostics();
-            
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+            //if (env.IsDevelopment())
+            //{
+                //app.UseDeveloperExceptionPage();
+            //}
+            app.UseExceptionHandler("/errors/500");
 
             app.UseSwagger();
 
