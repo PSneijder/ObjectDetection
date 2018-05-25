@@ -76,10 +76,23 @@ namespace ObjectDetection.WebApp.Managers
                         Path = $"{Constants.UploadPath}/{info.Name}"
                     };
 
-                blobs.Add(new Blob { DateTime = info.CreationTime, Url = builder.ToString() });
+                blobs.Add(new Blob { Id = info.Name, DateTime = info.CreationTime, Url = builder.ToString() });
             }
 
             return Task.FromResult(blobs.ToArray());
+        }
+
+        public Task RemoveBlob(string blobId)
+        {
+            string path = GetRootPath();
+            string fileName = Path.Combine(path, blobId);
+
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+
+            return Task.CompletedTask;
         }
 
         private string GetUniqueFileName(string fileName)

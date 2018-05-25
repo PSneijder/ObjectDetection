@@ -24,5 +24,12 @@ namespace ObjectDetection.WebApp.Controllers
 
             return View(viewModel);
         }
+
+        public async Task<IActionResult> RemoveBlob(string blobId)
+        {
+            await _manager.RemoveBlob(blobId);
+
+            return RedirectToAction("Index", "Blobs");
+        }
     }
 }
